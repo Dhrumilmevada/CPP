@@ -1,0 +1,47 @@
+--> Shallow copy VS Deep copy
+    -> A shallow copy of an object copies all of the member field values. This works well if the fields are values, but may not be what you want 
+    for fields that point to dynamically allocated memory. The pointer will be copied. but the memory it points to will not be copied -- 
+    the field in both the original object and the copy will then point to the same dynamically allocated memory, which is not usually what you want. 
+    The default copy constructor and assignment operator make shallow copies.
+
+    -> A deep copy copies all fields, and makes copies of dynamically allocated memory pointed to by the fields. To make a deep copy, you must 
+    write a copy constructor and overload the assignment operator, otherwise the copy will point to the original, with disasterous consequences.
+
+--> If you use implicit copy constructor and copy assignment operator which provide shallow copy that leads to dangling pointer in case more than smart 
+    pointer point to same resource (i.e. std::auto_ptr).
+
+--> If you override copy constructor and copy assignment operator to get deep copy of resource which lead to multiple acquiring and destroying of resource.
+    Thats is not optimized way to do it.
+
+--> Most optimized way is moving resources instead of coping them.We can implement move constructor and move assignment using r-value references.
+
+--> While using raw pointer(i.e. int* a = new int(5)), we need to delete allocated resource explicitly. Still we remember of delete allocated resource but
+    with sometime unexpected exit of code, allocated resource were not destroyed on heap. To resolved this kind of failure we can use smart pointer.
+
+--> l-value (also called a locator value) as a function or an object (or an expression that evaluates to a function or object). All l-values have 
+    assigned memory addresses.
+
+--> r-value as “everything that is not an l-value”. r-values are temporary value which is not stored in memory so once scope is over they gonna be 
+    destroyed.
+
+--> std::move convert l-values to r-values.
+
+--> std::unique_ptr manage any dynamically allocated object that is not shared by multiple objects.
+
+--> std::make_unique() and std::make_shared() are recommended because of simple code and exception safety.
+
+--> std::shared_ptr can have multiple smart pointers co-owning a resource.
+
+--> You can convert std::unique_ptr to std::shared_ptr using r-value of std::unique_ptr but vice-versa is not possible.
+
+--> While using std::shared_ptr, we have circular dependency like A is pointing B, B is pointing to A. In this case at end of program neither A or b is destroyed.
+    To resolve this, we need to use std::weak_ptr
+
+--> The downside of std::weak_ptr is that std::weak_ptr are not directly usable (they have no operator->).
+    To use a std::weak_ptr, you must first convert it into a std::shared_ptr. Then you can use the std::shared_ptr.
+    To convert a std::weak_ptr into a std::shared_ptr, you can use the lock() member function.  
+
+
+====> REFERENCES:-
+    --> https://www.learncpp.com/cpp-tutorial/15-1-intro-to-smart-pointers-move-semantics/
+
