@@ -1,0 +1,26 @@
+--> This is C++ tutorial video series by YouTube channel cherno[https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb].
+
+--> This include the modẹrn C++ feature which are available in newer version of C++11 and C++14.
+
+--> In C++, It does not uses any kind of VM to convert code to machine language and execute it. So mainly precise code will execute faster with compare
+to language which run inside VM.
+
+--> C++ compiler only compiles .cpp file, header files are included as pre-processor. So all header file will be compiled prior to all source files along
+with all pre-processor directives.
+
+--> Task for compiler
+    -> compile every source file separately.
+    -> while compiling source, first process pre-processor directive like (#include, #pragma #ifdefine, #ifndefine).
+    -> Compiler process pre-processor by just copy and paste those file on some parameter or condition.
+
+--> Task for linker
+    -> When project has more than one CPP and header file then linker has to play role to create executable file by link up all source files.
+
+-->Static keyword outside class in global scope
+    -> Any global fields in source file are accessible across all source files are there in project.
+    -> To restrict this behavior, static keyword can be added to global field declaration.
+    -> static keyword to global field declaration make will make them private to that source file. 
+
+--> Static keyword outside class in local scope
+    -> Whenever local fields declared static inside a function or any other block of code then its lifetime got increased to forever until the program 
+       dies.

@@ -1,0 +1,19 @@
+--> C++ compiler compile every source file separately. If one source file has any kind of dependencies to other files which are declare, define and use in 
+your project then they should be declare as pre-processor directives.
+
+-->Header files can just include declaration of variables and functions. If definition of function is included in header file then it might possible
+to have linker error. 
+--> As here without including .h file to main.cpp file, program will be not compiled.
+
+===>#pragma once
+    -> It will restrict inclusion of header file to one in one source file.
+    -> Conventional way of this is:-
+        #ifndefine _FILENAME_H
+        #define _FILENAME_H
+            ...
+            ...
+            ...
+        #endif
+
+--> When header file is included with double-quotation which means compiler can locate it in relative of current file, but if it include with
+angular bracket which means compiler have to look into one of include directory.
